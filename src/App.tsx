@@ -16,7 +16,7 @@ function App () {
           <Route path="/register" element={<Register />} />
           <Route path="/decks" element={<Layout><Decks /></Layout>} />
           <Route path="/decks/:id" element={<DeckDetail />} />
-          <Route path="/decks/:id/study" element={<Layout><Study /></Layout>} />
+          <Route path="/decks/:id/study" element={<Study />} />
           <Route path="/home" element={<Layout><Home /></Layout>} />
       </Routes>
     </BrowserRouter>

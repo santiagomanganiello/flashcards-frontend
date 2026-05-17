@@ -52,12 +52,24 @@ function DeckDetail() {
   async function generateCards() {
     if (!text.trim()) return
     setGenerating(true)
+
+    if ((deck?.cards.length ?? 0) >= 20) {
+      alert('Este mazo ya tiene 20 flashcards, no se pueden generar más.')
+      setGenerating(false)
+      return
+    }
+
+    setGenerating(true)
+    
     try {
       await api.post(`/flashcards/generate/${id}`, { text })
       setText('')
       await fetchDeck()
-    } catch {
-      console.error('Error al generar flashcards')
+    } catch (error: any) {
+      if (error.response?.status === 400) {
+        alert(error.response.data.message || 'No se pudieron generar flashcards con ese texto.')
+        return
+      }
     } finally {
       setGenerating(false)
     }
@@ -91,7 +103,7 @@ function DeckDetail() {
       <main className="max-w-4xl mx-auto px-8 py-12">
 
         <div className="mb-10">
-          <h2 className="text-xl font-semibold mb-4">Generar flashcards con IA</h2>
+          <h2 className="text-xl font-semibold mb-4">Generar FroxyCards</h2>
           <textarea
             rows={5}
             placeholder="Pegá cualquier texto y la IA va a generar flashcards automáticamente..."
@@ -104,14 +116,13 @@ function DeckDetail() {
             disabled={generating || !text.trim()}
             className="bg-violet-600 hover:bg-violet-500 disabled:opacity-50 transition px-6 py-3 rounded-xl font-semibold"
           >
-            {generating ? 'Generando...' : 'Generar flashcards ✨'}
+            {generating ? 'Generando...' : 'Generar ✨'}
           </button>
         </div>
 
         <h2 className="text-xl font-semibold mb-4">
-          Flashcards ({deck?.cards.length})
+        Limite del mazo: ({deck?.cards.length}/20)
         </h2>
-
         {deck?.cards.length === 0 ? (
           <p className="text-gray-400">No hay flashcards todavía. Generá algunas con IA.</p>
         ) : (
@@ -125,12 +136,6 @@ function DeckDetail() {
                 <p className="font-semibold mb-3">{card.question}</p>
                 <p className="text-sm text-gray-400 mb-2">Respuesta</p>
                 <p className="text-gray-300">{card.answer}</p>
-                <button
-                  onClick={() => deleteCard(card.id)}
-                  className="absolute top-1 right-3 text-red-400 hover:text-red-300 hover:cursor-pointer transition opacity-0 group-hover:opacity-100"
-                >
-                  ✕
-                </button>
               </div>
             ))}
           </div>

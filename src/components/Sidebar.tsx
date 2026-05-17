@@ -10,8 +10,9 @@ function Sidebar() {
   const location = useLocation()
 
   const links = [
-    { path: '/home', label: 'Home', icon: '🏠' },
+    { path: '/home', label: 'Inicio', icon: '🏠' },
     { path: '/decks', label: 'Mis mazos', icon: '📚' },
+    { path: '/profile', label: 'Mi Perfil', icon: '👤' },
   ]
 
   function handleNavigate(path: string) {
@@ -64,7 +65,7 @@ function Sidebar() {
     <>
       {/* Mobile: botón hamburguesa */}
       <button
-        className="md:hidden fixed top-3 left-3 z-5 p-2 text-2xl rounded-lg text-white"
+        className="md:hidden fixed top-2 left-2 z-5 p-2 text-3xl rounded-lg text-white"
         onClick={() => setOpen(!open)}
       >
         {open ? '✕' : '☰'}

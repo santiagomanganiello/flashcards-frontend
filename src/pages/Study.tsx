@@ -56,15 +56,20 @@ function Study() {
   function handleSelect(option: string) {
     if (selected) return
     setSelected(option)
-    if (option === cards[currentIndex].answer) {
-      setScore(s => s + 1)
-    }
   }
 
   function next() {
+    const isCorrect = selected === cards[currentIndex].answer
+    const finalScore = isCorrect ? score + 1 : score
+
     if (currentIndex + 1 >= cards.length) {
+      if (finalScore === cards.length) {
+        localStorage.setItem(`deck-completed-${id}`, 'true')
+      }
+      setScore(finalScore)
       setFinished(true)
     } else {
+      if (isCorrect) setScore(s => s + 1)
       setCurrentIndex(currentIndex + 1)
     }
   }
@@ -97,10 +102,10 @@ function Study() {
           Repetir
         </button>
         <button
-          onClick={() => navigate(`/decks/${id}`)}
+          onClick={() => navigate(`/decks`)}
           className="border border-gray-700 hover:border-gray-500 transition px-6 py-3 rounded-xl"
         >
-          Volver al mazo
+          Volver a mis mazos
         </button>
       </div>
     </div>

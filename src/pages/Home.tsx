@@ -54,10 +54,10 @@ function Home() {
     <div className="px-8 py-12 max-w-4xl mx-auto">
 
       <div className="mb-12">
-        <h1 className="text-4xl font-bold mb-2">
+        <h1 className="sm:text-4xl md:text-3xl text-center text-3xl font-bold mb-2">
             Froxy<span className="text-violet-500">Cards</span>
         </h1>
-        <p className="text-gray-400 text-lg">
+        <p className="text-gray-400 text-center text-lg">
           Estudiá más inteligente con tarjetas generadas por inteligencia artificial.
         </p>
       </div>
