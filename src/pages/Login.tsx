@@ -24,7 +24,7 @@ function Login() {
     try {
       const { data } = await api.post('/auth/login', form)
       login(data.token, data.userId)
-      navigate('/decks')
+      navigate('/home')
     } catch  {
       console.error('Error logging in user:', error)
       setError('Credenciales inválidas')
@@ -35,9 +35,9 @@ function Login() {
 
 
   return (
-    <div className="bg-[#0F172A] min-h-screen text-white flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <h1 className="text-3xl text-[#F8FAFC] font-bold text-center mb-2">Bienvenido</h1>
+    <div className="bg-gray-950 min-h-screen text-white flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-[#0F172A] p-8 rounded-lg shadow-lg border border-gray-800">
+        <h1 className="text-3xl text-[#F8FAFC] font-bold text-center mb-2">Bienvenido a FroxyCards</h1>
         <p className="text-[#94A3B8] text-center mb-8">Ingresá a tu cuenta</p>
         <img src={sapo} alt="Sapo Lector" className="mx-auto mb-6 w-60" /> 
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}

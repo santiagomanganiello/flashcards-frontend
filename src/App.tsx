@@ -4,6 +4,8 @@ import Register from './pages/Register'
 import Decks from './pages/Decks'
 import DeckDetail from './pages/DeckDetail'
 import Study from './pages/Study'
+import Layout from './components/Layout'
+import Home from './pages/Home'
 
 function App () {
   return (
@@ -12,9 +14,10 @@ function App () {
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/decks" element={<Decks />} />
+          <Route path="/decks" element={<Layout><Decks /></Layout>} />
           <Route path="/decks/:id" element={<DeckDetail />} />
-          <Route path="/decks/:id/study" element={<Study />} />
+          <Route path="/decks/:id/study" element={<Layout><Study /></Layout>} />
+          <Route path="/home" element={<Layout><Home /></Layout>} />
       </Routes>
     </BrowserRouter>
   )

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import api from '../api/axios'
+import iconfrog from '../assets/frog-icon.webp'
 
 interface Deck {
   id: number
@@ -55,19 +56,9 @@ function Decks() {
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
-      <nav className="flex justify-between items-center px-8 py-4 border-b border-gray-800">
-        <h1 className="text-xl font-bold">FroxyCards</h1>
-        <button
-          onClick={() => { logout(); navigate('/login') }}
-          className="text-gray-400 hover:text-red-500 hover:cursor-pointer transition text-sm"
-        >
-          Cerrar sesión
-        </button>
-      </nav>
-
       <main className="max-w-4xl mx-auto px-8 py-12">
         <h2 className="text-3xl font-bold mb-8">Mis mazos</h2>
-
+        <p className="text-gray-400 mb-4">Crea y usá tus mazos para dividir tus estudios por temas</p>
         <div className="flex gap-3 mb-10">
           <input
             type="text"
@@ -90,7 +81,7 @@ function Decks() {
         ) : decks.length === 0 ? (
           <p className="text-gray-400">No tenés mazos todavía. ¡Creá uno!</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
             {decks.map(deck => (
               <div
                 key={deck.id}
@@ -99,7 +90,7 @@ function Decks() {
               >
                 <h3 className="text-xl font-semibold mb-2">{deck.title}</h3>
                 <p className="text-gray-400 text-sm mb-4">
-                  {deck.cards.length} {deck.cards.length === 1 ? 'tarjeta' : 'tarjetas'}
+                  {deck.cards.length} {deck.cards.length === 1 ? 'tarjeta' : 'Flashcards'}
                 </p>
                 <div className="flex justify-between items-center">
                   <button

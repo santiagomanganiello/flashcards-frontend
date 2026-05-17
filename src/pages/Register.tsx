@@ -63,7 +63,7 @@ function Register() {
             className="px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-violet-500"
           />
           <button type="submit" disabled={loading} className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold py-2 px-4 rounded disabled:opacity-50">
-            {loading ? 'Registrando...' : 'Register'}
+            {loading ? 'Registrando...' : 'Registrarse'}
           </button>
             <p className="text-[#94A3B8] text-center">¿Ya tienes una cuenta? <a href="/login" className="text-[#7C3AED] hover:text-[#6D28D9]">Iniciar Sesión</a></p>
         </form>

@@ -37,10 +37,21 @@ function DeckDetail() {
     }
   }
 
+  async function deleteCard(cardId: number) {
+    try {
+      await api.delete(`/flashcards/${cardId}`)
+      setDeck(prev => prev ? {
+        ...prev,
+        cards: prev.cards.filter(c => c.id !== cardId)
+      } : null)
+    } catch {
+      console.error('Error al eliminar flashcard')
+    }
+  }
+
   async function generateCards() {
     if (!text.trim()) return
     setGenerating(true)
-
     try {
       await api.post(`/flashcards/generate/${id}`, { text })
       setText('')
@@ -108,12 +119,18 @@ function DeckDetail() {
             {deck?.cards.map(card => (
               <div
                 key={card.id}
-                className="bg-gray-900 border border-gray-800 rounded-2xl p-5"
+                className="bg-gray-900 border border-gray-800 rounded-2xl p-5 relative group"
               >
                 <p className="text-sm text-violet-400 mb-2">Pregunta</p>
                 <p className="font-semibold mb-3">{card.question}</p>
                 <p className="text-sm text-gray-400 mb-2">Respuesta</p>
                 <p className="text-gray-300">{card.answer}</p>
+                <button
+                  onClick={() => deleteCard(card.id)}
+                  className="absolute top-1 right-3 text-red-400 hover:text-red-300 hover:cursor-pointer transition opacity-0 group-hover:opacity-100"
+                >
+                  ✕
+                </button>
               </div>
             ))}
           </div>

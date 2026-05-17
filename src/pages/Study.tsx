@@ -110,7 +110,7 @@ function Study() {
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">
-      <nav className="flex justify-between items-center px-8 py-4 border-b border-gray-800">
+      <nav className="flex justify-between items-center px-8 py-4 border-b mb-4 border-gray-800">
         <button
           onClick={() => navigate(`/decks/${id}`)}
           className="text-gray-400 hover:text-white transition text-sm"
@@ -126,7 +126,7 @@ function Study() {
       </nav>
 
       <div className="flex-1 flex flex-col items-center justify-center px-4 gap-8 max-w-2xl mx-auto w-full">
-        <div className="w-full bg-gray-900 border border-gray-800 rounded-2xl p-10 text-center">
+        <div className="w-full bg-gray-900 border border-gray-800 rounded-2xl p-8 text-center">
           <p className="text-sm text-violet-400 mb-4">Pregunta</p>
           { selected && (
             <img
@@ -145,7 +145,7 @@ function Study() {
           <p className="text-2xl font-semibold">{card.question}</p>
         </div>
 
-        <div className="w-full grid grid-cols-1 gap-3">
+        <div className="w-full grid grid-cols-1 gap-3 mb-4">
           {options.map(option => {
             let style = 'border border-gray-700 hover:border-violet-500'
             if (selected) {
@@ -172,7 +172,7 @@ function Study() {
         {selected && (
           <button
             onClick={next}
-            className="bg-violet-600 hover:bg-violet-500 transition px-8 py-3 rounded-xl font-semibold"
+            className="bg-violet-600 hover:bg-violet-500 transition px-8 py-3 mb-4 rounded-xl font-semibold"
           >
             {currentIndex + 1 >= cards.length ? 'Finalizar' : 'Siguiente →'}
           </button>
